@@ -13,7 +13,7 @@ function Produto(nome, preco, estoque){
         get: function(){ // [Getter]
             return estoque;
         },
-        set: function(valor){ // Setter
+        set: function(valor){ // [Setter]
             if(typeof valor !== 'number') return console.log('Valor atribuído para estoque inválido');
             estoque = valor;
         }
