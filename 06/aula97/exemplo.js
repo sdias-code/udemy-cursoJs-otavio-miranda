@@ -51,5 +51,3 @@ console.log('Segundo dígito:', segundoDigito);
 const validaCpf = validarCPf(normalizacaoCpf, primeiroDigito, segundoDigito);
 
 console.log(validaCpf);
-
-
