@@ -5,4 +5,8 @@ const saudacao = (nome) => {
   return mensagem;
 };
 
-console.log(saudacao("Silvio"));
+const nome = 'Silvio';
+const obj = {nome};
+const novoObj = {...nome};
+
+console.log(saudacao(nome));
