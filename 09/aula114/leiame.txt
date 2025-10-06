@@ -1,0 +1,6 @@
+
+npm init -y
+npm install --save-dev @babel/core @babel/cli @babel/preset-env
+npx babel src --out-dir dist
+npm run build
+
