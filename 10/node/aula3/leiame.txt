@@ -1,0 +1,9 @@
+comandos
+
+npm init -y
+npm install express
+npm install --save-dev 
+npm install --save-prod
+npm unistall express
+npm ls --deph=0
+npm outdated
