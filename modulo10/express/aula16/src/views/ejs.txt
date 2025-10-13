@@ -1,0 +1,12 @@
+<% Controle de fluxo (if, else, for...) %>
+<%= Imprime escapando caracteres %>
+<%- Imprime sem escapar caracteres %>
+<%# Comentários %>
+<% include('pasta/arquivo'); %>
+
+Exemplo:
+   <% if(typeof titulo !== 'undefined'){ %>
+        <%= titulo %>
+        <% } else{ %>        
+          O título não foi definido
+        <% } %>
