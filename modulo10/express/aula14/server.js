@@ -1,0 +1,39 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+const routes = require('./routes');
+const path = require('path');
+
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const connectionString = process.env.CONNECTIONSTRING;
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('Conectado ao MongoDB');
+        app.emit('pronto');
+    })
+    .catch((err) => {
+        console.error('Erro ao conectar ao MongoDB:', err);
+    });
+
+const meuMiddleware = require('./src/middlewares/middleware');
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
+app.use(express.static(path.resolve(__dirname, 'public')));
+
+app.set('views', path.resolve(__dirname, 'src', 'views'));
+app.set('view engine', 'ejs');
+
+app.use(meuMiddleware);
+app.use(routes);
+
+app.on('pronto', () => {
+    app.listen(port, () => {
+        console.log('Servidor executando na porta ' + port);
+        console.log(`Example app listening at http://localhost:${port}`);
+    });
+});

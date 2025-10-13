@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aula 137</title>
+</head>
+
+<body>
+
+  <section class="container">
+    <h1>Aula 137</h1>
+    <p>Usando Middlewares e EJS</p>
+
+    <!-- Exemplo de variável vinda do controller -->
+    <% if (typeof cliente !== 'undefined') { %>
+      <p><strong>Cliente recebido:</strong> <%= cliente %></p>
+    <% } %>
+
+    <form action="/" method="post">
+      <label>Cliente</label>
+      <input type="text" name="cliente" />
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <script src="/assets/js/bundle.js"></script>
+</body>
+</html>
