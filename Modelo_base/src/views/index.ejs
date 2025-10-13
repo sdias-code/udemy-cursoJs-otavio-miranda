@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('./includes/head'); %>
+
+<body>
+
+  <section class="container">
+    <h1>
+      <% if(typeof titulo !== 'undefined'){ %>
+        <%= titulo %>
+        <% } else{ %>        
+          O título não foi definido
+        <% } %>
+    </h1>
+    <p>Usando Middlewares e EJS</p>      
+    
+    <p>
+      <%= umaVariavelLocal %>
+    </p>
+
+    <form action="/" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>Cliente</label>
+      <input type="text" name="cliente" />
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <script src="/assets/js/bundle.js"></script>
+</body>
+</html>
