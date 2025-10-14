@@ -1,21 +1,43 @@
 const Login = require('../models/LoginModel');
 
-exports.index = (req, res) => { 
+exports.index = (req, res) => {
   res.render('login');
   return;
 }
 
-exports.login = (req, res) => {
-  const login = new Login(req.body);
-  login.login();
+exports.login = async (req, res) => {
 
-  if(login.errors.length > 0){
-    res.send(login.errors);
-    req.flash('errors', login.errors);
-    req.session.save(() => res.redirect('/login'));
-    return;
+  try {
+    const login = new Login(req.body);
+    await login.login();
+
+    // Se houve erros de validação
+    if (login.errors.length > 0) {
+      console.log(login.errors);
+      req.flash('errors', login.errors);
+      req.session.save(function() {
+        return res.redirect('/login');
+      });
+      return;
+    }
+
+    // Caso tenha sucesso no cadastro
+    req.flash('success', 'Usuário logado com sucesso!');
+    console.log('Usuário logado com sucesso!');
+    req.session.user = login.user;
+    req.session.save(function () {
+      return res.redirect('/');
+    });    
+
+  } catch (error) {
+    console.log(error);
+    res.render('404');
   }
 
-  res.send(login.body);
-  return;
 }
+
+exports.logout = (req, res) => {
+  req.session.destroy();
+  res.redirect('/login');
+}
+  return;

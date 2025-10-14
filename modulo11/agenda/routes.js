@@ -5,7 +5,7 @@ const homeController = require('./src/controllers/homeController');
 const loginController = require('./src/controllers/loginController');
 const registerController = require('./src/controllers/registerController');
 
-route.get('/index', homeController.index, (req, res) => {
+route.get('/', homeController.index, (req, res) => {
   res.render('index');
 });
 
@@ -15,6 +15,10 @@ route.get('/login', loginController.index, (req, res) => {
 });
 
 route.post('/login', loginController.login, (req, res) => {
+  res.render('login');
+});
+
+route.get('/logout', loginController.logout, (req, res) => {
   res.render('login');
 });
 

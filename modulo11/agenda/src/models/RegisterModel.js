@@ -24,17 +24,13 @@ class Register {
         await this.userExists();
         if (this.errors.length > 0) return;
 
-        try {
-            const salt = bcryptjs.genSaltSync();
 
-            this.body.password = await bcryptjs.hash(this.body.password, salt);
+        const salt = bcryptjs.genSaltSync();
 
-            this.user = await RegisterModel.create(this.body);
+        this.body.password = await bcryptjs.hash(this.body.password, salt);
 
-        } catch (error) {
-            console.log(error);
-            this.errors.push('Erro ao cadastrar usuário. Tente novamente mais tarde.');
-        }
+        this.user = await RegisterModel.create(this.body);
+
     }
 
     valida() {
@@ -62,14 +58,12 @@ class Register {
     }
 
     async userExists() {
-        try {
-            this.user = await RegisterModel.findOne({ email: this.body.email });
-            if (this.user) this.errors.push('Usuário já existe.');
-        } catch (error) {
-            this.errors.push('Erro ao verificar usuário. Tente novamente mais tarde.');
-            return;
-        }
+        this.user = await RegisterModel.findOne({ email: this.body.email });
+        if (this.user) this.errors.push('Usuário já existe.');
     }
 }
 
-module.exports = Register;
+module.exports = {
+    RegisterModel,
+    Register
+};

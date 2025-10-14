@@ -1,4 +1,4 @@
-const Register = require('../models/RegisterModel');
+const {Register} = require('../models/RegisterModel'); // classe Register
 
 exports.index = (req, res) => {
   res.render('register');
@@ -19,7 +19,7 @@ exports.register = async (req, res) => {
 
     // Caso tenha sucesso no cadastro
     req.flash('success', 'Usuário cadastrado com sucesso!');
-    req.session.save(() => res.redirect('/register'));
+    req.session.save(() => res.redirect('/login'));
     return;
 
   } catch (error) {
