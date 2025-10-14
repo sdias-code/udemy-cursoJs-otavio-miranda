@@ -21,7 +21,7 @@ class Register {
         this.valida();
         if (this.errors.length > 0) return;
 
-        this.userExists();
+        await this.userExists();
         if (this.errors.length > 0) return;
 
         try {
@@ -34,7 +34,6 @@ class Register {
         } catch (error) {
             console.log(error);
             this.errors.push('Erro ao cadastrar usuário. Tente novamente mais tarde.');
-            return;
         }
     }
 
@@ -70,9 +69,7 @@ class Register {
             this.errors.push('Erro ao verificar usuário. Tente novamente mais tarde.');
             return;
         }
-
     }
-
 }
 
 module.exports = Register;
