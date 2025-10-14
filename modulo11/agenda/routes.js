@@ -14,7 +14,15 @@ route.get('/login', loginController.index, (req, res) => {
   res.render('login');
 });
 
+route.post('/login', loginController.login, (req, res) => {
+  res.render('login');
+});
+
 route.get('/register', registerController.index, (req, res) => {
+  res.render('register');
+});
+
+route.post('/register', registerController.register, (req, res) => {
   res.render('register');
 });
 

@@ -7,3 +7,4 @@ npm install dotenv
 npm install mongoose
 npm install express-session connect-mongo connect-flash
 npm install helmet csurf
+npm install validator
