@@ -1,15 +1,22 @@
 const express = require('express');
-const router = express.Router();
+const route = express.Router();
 
 const homeController = require('./src/controllers/homeController');
-const contatoController = require('./src/controllers/contatoController');
+const loginController = require('./src/controllers/loginController');
+const registerController = require('./src/controllers/registerController');
 
-router.get('/', homeController.paginaInicial);
+route.get('/index', homeController.index, (req, res) => {
+  res.render('index');
+});
 
-router.post('/', homeController.trataPost);
+// Rotas de login, cadastro, etc. podem ser adicionadas aqui
+route.get('/login', loginController.index, (req, res) => {
+  res.render('login');
+});
 
-// Rotas de contato
-router.get('/contato', contatoController.paginaInicial);
-router.post('/contato', contatoController.trataPost);
+route.get('/register', registerController.index, (req, res) => {
+  res.render('register');
+});
 
-module.exports = router;
+
+module.exports = route;
