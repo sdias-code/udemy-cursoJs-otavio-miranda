@@ -2,13 +2,11 @@
 
   <%- include('includes/nav') %>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-2"></div>
+    <div class="container my-5">
 
-        <div class="col-lg-8 my-3">
-          <h1 class="display-1 text-center"> Página de login</h1>
-          <p class="text-center lead">Entre com sua conta:</p>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h1 class="display-5 text-center mb-4"> Página de login</h1>          
 
           <%- include('includes/messages') %>
         </div>
@@ -16,7 +14,7 @@
         <div class="row">
           <div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <form action="/login" method="POST">
+            <form action="/login" method="POST" class="border rounded p-4 shadow-sm bg-light">
               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
@@ -39,7 +37,5 @@
 
       </div>
 
-    </div>
 
-
-    <%- include('includes/footer') %>
+      <%- include('includes/footer') %>

@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const connectionString = process.env.CONNECTIONSTRING;
 
-mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(connectionString)
     .then(() => {
         console.log('Conectado ao MongoDB');
         app.emit('pronto');

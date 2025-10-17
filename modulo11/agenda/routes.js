@@ -1,34 +1,35 @@
 const express = require('express');
 const route = express.Router();
 
-const homeController = require('./src/controllers/homeController');
 const loginController = require('./src/controllers/loginController');
 const registerController = require('./src/controllers/registerController');
+const contatoController = require('./src/controllers/contatoController');
 
-route.get('/', homeController.index, (req, res) => {
-  res.render('index');
+const { loginRequired } = require('./src/middlewares/middleware');
+
+// Rota principal
+route.get('/', (req, res) => {
+  if (req.session.user) {
+    return res.redirect('/contato');
+  }
+  return res.redirect('/login');
 });
 
-// Rotas de login, cadastro, etc. podem ser adicionadas aqui
-route.get('/login', loginController.index, (req, res) => {
-  res.render('login');
-});
+// Rotas de login e registro
+route.get('/login', loginController.index);
+route.post('/login', loginController.login);
+route.get('/logout', loginController.logout);
 
-route.post('/login', loginController.login, (req, res) => {
-  res.render('login');
-});
+route.get('/register', registerController.index);
+route.post('/register', registerController.register);
 
-route.get('/logout', loginController.logout, (req, res) => {
-  res.render('login');
-});
-
-route.get('/register', registerController.index, (req, res) => {
-  res.render('register');
-});
-
-route.post('/register', registerController.register, (req, res) => {
-  res.render('register');
-});
-
+// Rotas de contato protegidas por login
+route.get('/contato', loginRequired, contatoController.index);
+route.get('/contatoAdd', loginRequired, contatoController.cadastro);
+route.post('/contato', loginRequired, contatoController.contato);
+route.get('/contato/edit/:id', loginRequired, contatoController.editPage);
+route.post('/contato/edit/:id', loginRequired, contatoController.update);
+//route.get('/contato/delete/:id', loginRequired, contatoController.delete);
+route.post('/contato/delete/:id', loginRequired, contatoController.delete);
 
 module.exports = route;

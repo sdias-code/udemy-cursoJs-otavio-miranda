@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
     console.log('Usuário logado com sucesso!');
     req.session.user = login.user;
     req.session.save(function () {
-      return res.redirect('/');
+      return res.redirect('/contato');
     });    
 
   } catch (error) {
