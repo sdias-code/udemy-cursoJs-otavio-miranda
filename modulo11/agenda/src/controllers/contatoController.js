@@ -66,6 +66,7 @@ exports.contato = async (req, res) => {
 exports.editPage = async (req, res) => {
   try {
     const contato = await Contato.findById(req.params.id);
+
     if (!contato) {
       req.flash('errors', 'Contato não encontrado.');
       return res.redirect('/contato');
@@ -83,6 +84,7 @@ exports.editPage = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const { nome, sobrenome, telefone, email } = req.body;
+    
     if (!nome) throw new Error('O nome é obrigatório.');
 
     const contato = await Contato.findByIdAndUpdate(
@@ -90,7 +92,7 @@ exports.update = async (req, res) => {
       { nome, sobrenome, telefone, email },
       { new: true, runValidators: true }
     );
-
+    
     if (!contato) throw new Error('Contato não encontrado.');
 
     req.flash('success', 'Contato atualizado com sucesso!');

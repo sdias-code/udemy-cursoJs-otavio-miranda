@@ -1,35 +1,8 @@
-<!-- Modal de confirmação de exclusão -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content border-0 shadow-lg">
-      <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Tem certeza de que deseja excluir o contato: <br/> <strong id="contactName"></strong>?
-      </div>
-
-      <div class="modal-footer d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
-
-        <button type="submit" class="btn btn-danger" form="deleteContactForm">Confirmar exclusão</button>
-      </div>
-      
-      <form id="deleteContactForm" method="POST" style="display:none;">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      </form>
-
-    </div>
-  </div>
-</div>
 
 <!-- Bootstrap JS -->
 <script src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>
 
 <!-- JS da aplicação -->
-<script src="/js/main.js"></script>
 <script src="/js/delete-modal.js"></script>
 
 </body>
